@@ -1,0 +1,13 @@
+public class TestLocal {
+
+
+
+    public static void main(String args[]){
+	Menu m;
+	m.display(
+	
+
+    }
+
+
+} 

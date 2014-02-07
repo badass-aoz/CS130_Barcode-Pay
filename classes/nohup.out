@@ -1,0 +1,16 @@
+The barcode server is running.
+Exception in thread "main" java.net.BindException: Address already in use
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.AbstractPlainSocketImpl.bind(AbstractPlainSocketImpl.java:353)
+	at java.net.ServerSocket.bind(ServerSocket.java:336)
+	at java.net.ServerSocket.<init>(ServerSocket.java:202)
+	at java.net.ServerSocket.<init>(ServerSocket.java:114)
+	at BarcodeServer.main(BarcodeServer.java:70)
+The barcode server is running.
+New connection with client# 0 at Socket[addr=/172.248.128.41,port=54108,localport=9800]
+card type recived: 122
+card number recived: 22
+exp month recived: 2
+exp year recived: 2
+CSV recived: 2
+Connection with client# 0 closed
