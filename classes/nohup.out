@@ -14,3 +14,41 @@ exp month recived: 2
 exp year recived: 2
 CSV recived: 2
 Connection with client# 0 closed
+The barcode server is running.
+New connection with client# 0 at Socket[addr=/172.248.128.41,port=56890,localport=9800]
+Create a user account function has not been implemented!
+Add a credit card function has not been implemented!
+Update a Barcode function has not been implemented!
+Request a Barcode function has not been implemented!
+Decode a Barcode function has not been implemented!
+Invalid Number!
+Invalid Number!
+Connection with client# 0 closed
+New connection with client# 1 at Socket[addr=/172.248.128.41,port=56892,localport=9800]
+Connection with client# 1 closed
+New connection with client# 2 at Socket[addr=/172.248.128.41,port=56894,localport=9800]
+Connection with client# 2 closed
+New connection with client# 3 at Socket[addr=/172.248.128.41,port=56898,localport=9800]
+Connection with client# 3 closed
+New connection with client# 4 at Socket[addr=/172.248.128.41,port=56900,localport=9800]
+Create a user account function has not been implemented!
+Add a credit card function has not been implemented!
+Update a Barcode function has not been implemented!
+Invalid Number!
+Connection with client# 4 closed
+New connection with client# 5 at Socket[addr=/172.248.128.41,port=56913,localport=9800]
+Create a user account function has not been implemented!
+Add a credit card function has not been implemented!
+Update a Barcode function has not been implemented!
+Request a Barcode function has not been implemented!
+Decode a Barcode function has not been implemented!
+Invalid Number!
+Connection with client# 5 closed
+New connection with client# 6 at Socket[addr=/172.248.128.41,port=56997,localport=9800]
+Create a user account function has not been implemented!
+Add a credit card function has not been implemented!
+Update a Barcode function has not been implemented!
+Request a Barcode function has not been implemented!
+Decode a Barcode function has not been implemented!
+Invalid Number!
+Connection with client# 6 closed

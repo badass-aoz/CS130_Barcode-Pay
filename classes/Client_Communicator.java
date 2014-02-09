@@ -15,8 +15,8 @@ public class Client_Communicator {
 	    BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 	    
 	    System.out.println(inFromServer.readLine());
-
-	    while(choiceOfMenu != "6"){
+	    
+	    do {
 		System.out.println("Enter the menu:");
 		System.out.println("1.Create an account.");
 		System.out.println("2.Add a credit card.");
@@ -27,7 +27,7 @@ public class Client_Communicator {
 		choiceOfMenu = inFromUser.readLine();
 		outToServer.writeBytes(choiceOfMenu + '\n');
 		System.out.println(inFromServer.readLine());
-	    }	    
+	    } while(!(choiceOfMenu.equals("6")));	    
 	    
 
 

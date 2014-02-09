@@ -3,6 +3,8 @@ import java.net.*;
 
 public class Server_Communicator {
 
+    private static Hash_Generator hashGen = new Hash_Generator();
+    
     private static class Worker extends Thread {
         private Socket socket;
         private int clientNumber;
@@ -18,9 +20,11 @@ public class Server_Communicator {
 	    //	    Registrar r = new Registrar();
 	    
 	    String choice;
-	    Boolean response;
+	    int response;
 
             try {
+
+ 
 		
 		BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		// DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
@@ -30,7 +34,7 @@ public class Server_Communicator {
 		Menu m = new Menu();
 		
 		while((choice= inFromClient.readLine()) != null){
-		    response = m.order(choice);
+		    response = m.order(choice, hashGen);
 		    outToClient.println(response);
 		}
 
