@@ -7,21 +7,30 @@ public class Menu {
     public int order(String choice, Hash_Generator hashGen) throws IOException {
 	String[] args = choice.split(DELIMITER);
 	System.out.println(args[0]+args[1]+args[2]);
-	// TO DO
-	// needs some method to validate arguments
+
 	Authenticator auth = new Authenticator();
+
+	//TO DO: auth.isValid should check the args[1](account name) and args[2](password).
+	//       auth.isValid returns:
+	//       0: account and password is correct and inside the DB.
+	//       1: account is in DB, but password is not correct.
+	//       2: account does not exist in DB.
 	int valid_num = auth.isValid(args[1], args[2]);
 	
 	    int caseNum = Integer.parseInt(args[0]);
-	//	while(caseNum != 6){
-	
 	
 	
 	    switch(caseNum){
 	    case 1:
 		// When valid_num is equal to 2, it means that account is not exists.
 		if (valid_num == 2) {
-		    //TODO: Store the account and password to DB. 
+
+		    // args[0] = "2"                                                                                                                                                                              
+		    // args[1] = "accountName"                                                                                                                                                                    
+		    // args[2] = "password"         
+
+		    // TODO: Store the account and password to DB. 
+
 		    return 0;
 		    
 		}
@@ -31,6 +40,17 @@ public class Menu {
 	    case 2:
 		if ( valid_num == 0 ) {
 		CreditCard c = new CreditCard(args);
+
+		// args[0] = "2"
+		// args[1] = "accountName"
+		// args[2] = "password"
+		// args[3] = "creditCardType"
+		// args[4] = "creditCardNumber"
+		// args[5] = "expirationMonth"
+		// args[6] = "expirationYear"
+		// args[7] = "cardVerificationNumber(CSV)"
+		// args[8] = "cardHolderName"
+
 		//TODO: Store the credit card object to DB
 
 		
@@ -43,17 +63,19 @@ public class Menu {
 	    case 3:
 		System.out.println("Update a Barcode function has not been implemented!");
 		return 0;
-	    /*
-	      creditCard c = new CreditCard();
-		  r.updateCreditCard(c, inFromClient, outToClient);
-		*/
+
 	    case 4:
 		if ( valid_num == 0 ) {
 
-		    // TO DO:
-		    // fetch credit card information from DB and generate random number accordingly
-		    
+  
 		    CreditCard cc4 = new CreditCard();
+ 		   
+		    // args[0] = "4"
+		    // args[1] = "accountName"
+		    // args[2] = "password"
+		  
+		    // TO DO:
+		    // Using given account name and password, create a credit card object from DB.
 		    return hashGen.getRandomNumber(cc4);
 		    
 
@@ -64,23 +86,6 @@ public class Menu {
 		} 		
 
 
-		
-		
-
-	    /*	    Authenticator a = new Authenticator();
-		    if(a.isValidAccount()){
-			    CreditCard disposableCard = getCardFromDB(account, password);
-			    Hash_Generator h;
-			    int randomKey = h.randomKey();
-			    h.table.put(randomKey, disposableCard);
-			    outToClient.println(randomKey);
-			    }
-			    else{
-			    outToClient.println("The account or password you entered is incorrect.");
-			    this.display();
-			    this.order();
-			    }
-	    */
 
 	    case 5:
 		System.out.println("Decode a Barcode function has not been implemented!");
