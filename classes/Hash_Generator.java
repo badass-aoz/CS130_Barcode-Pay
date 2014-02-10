@@ -17,8 +17,13 @@ public class Hash_Generator{
 	Integer value = new Integer(0);                                                 
 	value = rand.nextInt(50)+1;
 	hm.put(value,cc);
+
 	return value;
+	    
     }
 
+    public boolean isEmpty() {
+	return hm.isEmpty();
+    }
 
 }

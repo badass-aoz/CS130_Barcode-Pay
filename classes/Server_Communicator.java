@@ -3,20 +3,22 @@ import java.net.*;
 
 public class Server_Communicator {
 
-    private static Hash_Generator hashGen = new Hash_Generator();
-    
-    private static class Worker extends Thread {
+    //    private static Hash_Generator hashGen = new Hash_Generator();
+    private static Hash_Generator hashGen;
+
+    public static class Worker extends Thread {
         private Socket socket;
         private int clientNumber;
-	
+    
 	// Constructor
-        public Worker(Socket socket, int clientNumber) {
+    public Worker(Socket socket, int clientNumber){
             this.socket = socket;
             this.clientNumber = clientNumber;
             log("New connection with client# " + clientNumber + " at " + socket);
+	    //	    hashGen = hashGen;
         }
 	
-        public void run() {
+    public void run() {
 	    //	    Registrar r = new Registrar();
 	    
 	    String choice;
@@ -37,10 +39,6 @@ public class Server_Communicator {
 		    response = m.order(choice, hashGen);
 		    outToClient.println(response);
 		}
-
-
-
-
 		
             } catch (IOException e) {
                 log("Error handling client# " + clientNumber + ": " + e);
@@ -51,7 +49,10 @@ public class Server_Communicator {
                     log("Couldn't close a socket, what's going on?");
                 }
                 log("Connection with client# " + clientNumber + " closed");
-            }
+		this.interrupt();
+		System.out.println("here!\n");
+		}
+
         }
 
 
@@ -68,6 +69,9 @@ public class Server_Communicator {
         try {
             while (true) {
                 new Worker(listener.accept(), clientNumber++).start();
+		// if (hashGen.isEmpty()) {
+		//     System.out.println("blah\n\n");
+		// }
             }
         } finally {
             listener.close();
