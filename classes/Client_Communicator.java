@@ -25,7 +25,7 @@ public class Client_Communicator {
 		System.out.println("5.Decode a Barcode.(For cashier)") ;
 		System.out.println("6.Leave the application.");    
 		choiceOfMenu = inFromUser.readLine();
-		outToServer.writeBytes(choiceOfMenu + '\n');
+		outToServer.writeBytes(choiceOfMenu + "\n");
 		System.out.println(inFromServer.readLine());
 	    } while(!(choiceOfMenu.equals("6")));	    
 	    

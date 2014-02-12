@@ -35,7 +35,23 @@ public class Server_Communicator {
 		outToClient.println("Hello, you are client #" + clientNumber + ".");		
 		Menu m = new Menu();
 		
+		long startTime = 0;
+		long elapsedTime = 0;
 		while((choice= inFromClient.readLine()) != null){
+		    
+		    if(choice.charAt(0) == 4){
+                        startTime = System.currentTimeMillis();
+                    }
+                    else if(choice.charAt(0) == 5){
+                        elapsedTime = System.currentTimeMillis()-startTime;
+                        if(elapsedTime>6000){
+                            System.out.println(elapsedTime);
+                            System.out.println("Barcode has been expired. Request a barcode again");
+                            break;
+                        }
+                    }
+
+		    System.out.println(choice);
 		    response = m.order(choice, hashGen);
 		    outToClient.println(response);
 		}
@@ -68,6 +84,7 @@ public class Server_Communicator {
         ServerSocket listener = new ServerSocket(9800);
         try {
             while (true) {
+		hashGen = new Hash_Generator();
                 new Worker(listener.accept(), clientNumber++).start();
 		// if (hashGen.isEmpty()) {
 		//     System.out.println("blah\n\n");

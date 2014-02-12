@@ -13,9 +13,12 @@ public class Hash_Generator{
     private HashMap<Integer,CreditCard> hm;
     
     public int getRandomNumber(CreditCard cc){
-	Random rand = new Random();                                                         
-	Integer value = new Integer(0);                                                 
+	System.out.println("something");
+	Random rand = new Random();
+
+	Integer value = new Integer(0);
 	value = rand.nextInt(50)+1;
+	System.out.println(value);
 	hm.put(value,cc);
 
 	return value;

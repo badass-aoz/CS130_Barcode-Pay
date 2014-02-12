@@ -52,3 +52,28 @@ Request a Barcode function has not been implemented!
 Decode a Barcode function has not been implemented!
 Invalid Number!
 Connection with client# 6 closed
+The barcode server is running.
+New connection with client# 0 at Socket[addr=/172.248.128.41,port=35337,localport=9800]
+1accpass
+2accpass
+Connection with client# 0 closed
+Exception in thread "Thread-0" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:37)
+New connection with client# 1 at Socket[addr=/172.248.128.41,port=35339,localport=9800]
+4accpass
+Connection with client# 1 closed
+New connection with client# 2 at Socket[addr=/172.248.128.41,port=35341,localport=9800]
+4ap
+2ac
+4ac
+Connection with client# 2 closed
+The barcode server is running.
+New connection with client# 0 at Socket[addr=/172.248.128.41,port=36799,localport=9800]
+Connection with client# 0 closed
+Exception in thread "Thread-0" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:37)
+New connection with client# 1 at Socket[addr=/172.248.128.41,port=36803,localport=9800]
+4llll
+Connection with client# 1 closed

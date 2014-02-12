@@ -65,15 +65,17 @@ public class Menu {
 		return 0;
 
 	    case 4:
+		System.out.println("In case4");
 		if ( valid_num == 0 ) {
 
   
 		    CreditCard cc4 = new CreditCard();
- 		   
+		    cc4.setCreditCardType("visa");
+		    System.out.println(cc4.getCreditCardType());
 		    // args[0] = "4"
 		    // args[1] = "accountName"
 		    // args[2] = "password"
-		  
+		    System.out.println("In case4 if");
 		    // TO DO:
 		    // Using given account name and password, create a credit card object from DB.
 		    return hashGen.getRandomNumber(cc4);
