@@ -1,5 +1,0 @@
-
-
-DROP TABLE Account;
-
-
