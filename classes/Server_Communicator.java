@@ -52,7 +52,7 @@ public class Server_Communicator {
                     }
 
 		    System.out.println(choice);
-		    response = m.order(choice, hashGen);
+		    response = m.order(choice, hashGen, socket);
 		    outToClient.println(response);
 		}
 		

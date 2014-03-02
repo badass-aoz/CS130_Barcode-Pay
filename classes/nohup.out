@@ -77,3 +77,270 @@ Exception in thread "Thread-0" java.lang.ArrayIndexOutOfBoundsException: 1
 New connection with client# 1 at Socket[addr=/172.248.128.41,port=36803,localport=9800]
 4llll
 Connection with client# 1 closed
+Exception in thread "main" java.lang.NoClassDefFoundError: Server_Communicator/java
+Caused by: java.lang.ClassNotFoundException: Server_Communicator.java
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:217)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:205)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:323)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:294)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:268)
+Could not find the main class: Server_Communicator.java. Program will exit.
+The barcode server is running.
+The barcode server is running.
+New connection with client# 0 at Socket[addr=/131.179.49.225,port=49664,localport=9800]
+4`haha`123
+4haha123
+In case4
+visa
+In case4 if
+something
+31
+Connection with client# 0 closed
+here!
+
+New connection with client# 1 at Socket[addr=/131.179.49.225,port=48102,localport=9800]
+4`haha`v
+4hahav
+In case4
+visa
+In case4 if
+something
+42
+Connection with client# 1 closed
+here!
+
+New connection with client# 2 at Socket[addr=/131.179.49.225,port=54564,localport=9800]
+4``
+Connection with client# 2 closed
+here!
+
+Exception in thread "Thread-2" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 3 at Socket[addr=/131.179.49.225,port=43415,localport=9800]
+4``vgg
+4vgg
+In case4
+visa
+In case4 if
+something
+27
+Connection with client# 3 closed
+here!
+
+New connection with client# 4 at Socket[addr=/131.179.49.225,port=47629,localport=9800]
+1``
+Connection with client# 4 closed
+here!
+
+Exception in thread "Thread-4" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 5 at Socket[addr=/131.179.3.86,port=39538,localport=9800]
+4``hyujj
+4hyujj
+In case4
+visa
+In case4 if
+something
+43
+Connection with client# 5 closed
+here!
+
+New connection with client# 6 at Socket[addr=/131.179.3.86,port=48109,localport=9800]
+1`tyhgdf`ghbxd
+1tyhgdfghbxd
+Connection with client# 6 closed
+here!
+
+New connection with client# 7 at Socket[addr=/131.179.3.86,port=37984,localport=9800]
+2`fffzs`vdtgg`American Express`845854```855455`gsrfg
+2fffzsvdtgg
+Connection with client# 7 closed
+here!
+
+Exception in thread "Thread-7" java.lang.StringIndexOutOfBoundsException: String index out of range: 0
+	at java.lang.String.charAt(String.java:694)
+	at Server_Communicator$Worker.run(Server_Communicator.java:42)
+New connection with client# 8 at Socket[addr=/131.179.3.86,port=36642,localport=9800]
+4`fffzs`hdtuge
+4fffzshdtuge
+In case4
+visa
+In case4 if
+something
+26
+Connection with client# 8 closed
+here!
+
+New connection with client# 9 at Socket[addr=/131.179.49.225,port=56389,localport=9800]
+2``vv`Visa`````
+2vv
+Connection with client# 9 closed
+here!
+
+Exception in thread "Thread-9" java.lang.ArrayIndexOutOfBoundsException: 4
+	at CreditCard.<init>(CreditCard.java:12)
+	at Menu.order(Menu.java:42)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 10 at Socket[addr=/131.179.49.225,port=36427,localport=9800]
+4``r
+4r
+In case4
+visa
+In case4 if
+something
+24
+Connection with client# 10 closed
+here!
+
+New connection with client# 11 at Socket[addr=/128.97.102.10,port=1684,localport=9800]
+4`ggh`
+Connection with client# 11 closed
+here!
+
+Exception in thread "Thread-11" java.lang.ArrayIndexOutOfBoundsException: 2
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 12 at Socket[addr=/128.97.102.10,port=1069,localport=9800]
+4``
+Connection with client# 12 closed
+here!
+
+Exception in thread "Thread-12" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 13 at Socket[addr=/128.97.102.9,port=1185,localport=9800]
+4``
+Connection with client# 13 closed
+here!
+
+Exception in thread "Thread-13" java.lang.ArrayIndexOutOfBoundsException: 1
+	at Menu.order(Menu.java:9)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 14 at Socket[addr=/128.97.102.9,port=1083,localport=9800]
+4`hate`vvb
+4hatevvb
+In case4
+visa
+In case4 if
+something
+48
+Connection with client# 14 closed
+here!
+
+New connection with client# 15 at Socket[addr=/128.97.167.231,port=35494,localport=9800]
+4`hate`hateblue
+4hatehateblue
+In case4
+visa
+In case4 if
+something
+25
+Connection with client# 15 closed
+here!
+
+New connection with client# 16 at Socket[addr=/128.97.102.9,port=1055,localport=9800]
+4``v
+4v
+In case4
+visa
+In case4 if
+something
+46
+Connection with client# 16 closed
+here!
+
+New connection with client# 17 at Socket[addr=/128.97.102.9,port=1476,localport=9800]
+4``b
+4b
+In case4
+visa
+In case4 if
+something
+1
+Connection with client# 17 closed
+here!
+
+New connection with client# 18 at Socket[addr=/128.97.102.9,port=1326,localport=9800]
+4``g
+4g
+In case4
+visa
+In case4 if
+something
+39
+Connection with client# 18 closed
+here!
+
+New connection with client# 19 at Socket[addr=/128.97.102.9,port=1480,localport=9800]
+2``f`Visa`````
+2f
+Connection with client# 19 closed
+here!
+
+Exception in thread "Thread-19" java.lang.ArrayIndexOutOfBoundsException: 4
+	at CreditCard.<init>(CreditCard.java:12)
+	at Menu.order(Menu.java:42)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 20 at Socket[addr=/128.97.102.9,port=1648,localport=9800]
+1``xxdggffddd
+1xxdggffddd
+Connection with client# 20 closed
+here!
+
+New connection with client# 21 at Socket[addr=/128.97.102.9,port=1662,localport=9800]
+2`qzds`fffdfgf`Visa`````
+2qzdsfffdfgf
+Connection with client# 21 closed
+here!
+
+Exception in thread "Thread-21" java.lang.ArrayIndexOutOfBoundsException: 4
+	at CreditCard.<init>(CreditCard.java:12)
+	at Menu.order(Menu.java:42)
+	at Server_Communicator$Worker.run(Server_Communicator.java:55)
+New connection with client# 22 at Socket[addr=/128.97.102.9,port=1769,localport=9800]
+4`qzds`gyrfghh
+4qzdsgyrfghh
+In case4
+visa
+In case4 if
+something
+41
+Connection with client# 22 closed
+here!
+
+New connection with client# 23 at Socket[addr=/169.232.241.11,port=46848,localport=9800]
+4`vhh`bhh
+4vhhbhh
+In case4
+visa
+In case4 if
+something
+29
+Connection with client# 23 closed
+here!
+
+New connection with client# 24 at Socket[addr=/169.232.241.11,port=49285,localport=9800]
+4`vhh`hhh
+4vhhhhh
+In case4
+visa
+In case4 if
+something
+47
+Connection with client# 24 closed
+here!
+
+New connection with client# 25 at Socket[addr=/169.232.241.11,port=37263,localport=9800]
+4`vhh`ggg
+4vhhggg
+In case4
+visa
+In case4 if
+something
+46
+Connection with client# 25 closed
+here!
+
