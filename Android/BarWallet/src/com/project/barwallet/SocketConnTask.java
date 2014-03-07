@@ -2,10 +2,8 @@ package com.project.barwallet;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -15,9 +13,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
+//import android.net.Uri;
 
 public class SocketConnTask {
 
@@ -27,7 +26,7 @@ public class SocketConnTask {
 	
 	
 	public void signUpConn(Activity activity, String userName, String passwd, String phoneNum, Uri photo){
-		String connString = userName+"`"+passwd+ "`"+phoneNum+"\n";
+		String connString = "1`"+userName+"`"+passwd+ "`"+phoneNum;
 		
 		new ConnSignUp(activity).execute(new String []{connString, photo.toString()});
 		
@@ -42,28 +41,21 @@ public class SocketConnTask {
 			this.activity = activity;
 		}
 	     protected String doInBackground(String... connStrings) {
-	    	 String statusCode="";
+	    	 String statusCode="   ";
 	    	 try{
 					Socket clientSocket = new Socket ("108.168.239.90",9800);
-					PrintWriter out = new PrintWriter(clientSocket.getOutputStream(),true);
+					OutputStream outStream = clientSocket.getOutputStream();
+					PrintWriter out = new PrintWriter(outStream,true);
 					BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-					out.println(connStrings[0]);
 					
 					
-					File myFile = new File(connStrings[1].toString());
-					FileInputStream fis = null;
-			         
-					try {
-			             fis = new FileInputStream(myFile);
-			         } catch (FileNotFoundException e) {
-			             // TODO Auto-generated catch block
-			             e.printStackTrace();
-			         }
-
-			         Bitmap bm = BitmapFactory.decodeStream(fis);
-			         byte[] imgbyte = getBytesFromBitmap(bm);
-			         out.println(imgbyte);
-			         
+					
+					Bitmap bm = MediaStore.Images.Media.getBitmap(activity.getContentResolver(), Uri.parse(connStrings[1]));
+			        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			        bm.compress(CompressFormat.JPEG, 60, bos);
+			        byte[] imgbyte = bos.toByteArray();
+			        out.println(connStrings[0]+"`"+((Integer)(imgbyte.length)).toString()+"\n");
+			        outStream.write(imgbyte);
 			         
 			        statusCode = in.readLine();
 					if(statusCode.length()!=0 )
@@ -115,5 +107,7 @@ public class SocketConnTask {
 	    bitmap.compress(CompressFormat.JPEG, 70, stream);
 	    return stream.toByteArray();
 	}
+	
+
 	
 }

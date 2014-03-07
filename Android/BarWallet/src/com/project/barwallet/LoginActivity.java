@@ -260,17 +260,14 @@ public class LoginActivity extends FragmentActivity implements
 			etPasswd = (EditText) rootView.findViewById(R.id.password);
 			etRePass = (EditText) rootView.findViewById(R.id.rePassword);
 			etPhoneNumber =(EditText) rootView.findViewById(R.id.telphone);
-			
-			final String passwd = etPasswd.getText().toString();
-			final String rePasswd = etRePass.getText().toString();
-			
-			final String userName = etUsername.getText().toString();
-			final String phoneNumber = etPhoneNumber.getText().toString();
-			
+	
 			btnSubmit.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View arg){
-					
+					String passwd = etPasswd.getText().toString();
+					String rePasswd = etRePass.getText().toString();
+					String userName = etUsername.getText().toString();
+					String phoneNumber = etPhoneNumber.getText().toString();
 					if(!passwd.equals(rePasswd)){
 						SocketConnTask.showDialog(getActivity(), "Password is not correct");
 						return;
