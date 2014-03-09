@@ -26,6 +26,8 @@ import android.widget.ImageButton;
 public class LoginActivity extends FragmentActivity implements
 		ActionBar.TabListener {
 
+	public static final String GLOBAL_PREF_NAME ="COM.PROJECT.BARWALLET";
+	public static final String USERNAME ="COM.PROJECT.BARWALLET.USERNAME";
 	/**
 	 * The {@link android.support.v4.view.PagerAdapter} that will provide
 	 * fragments for each of the sections. We use a
@@ -173,15 +175,13 @@ public class LoginActivity extends FragmentActivity implements
 
 	// a fragment that show the login
 	public static class LoginFragment extends Fragment {
-		public static final String GLOBAL_PREF_NAME ="COM.PROJECT.BARWALLET";
-		public static final String USERNAME ="COM.PROJECT.BARWALLET.USERNAME";
+		
 		
 		Button btnSubmit;
-		String userName;
 		EditText etUserName;
 		EditText etPassword;
 		
-		String phoneNumber;
+		
 		
 		public LoginFragment (){
 		}
@@ -195,25 +195,27 @@ public class LoginActivity extends FragmentActivity implements
 			etUserName = (EditText) rootView.findViewById(R.id.username);
 			etPassword = (EditText) rootView.findViewById(R.id.password);
 			
-			phoneNumber = ((LoginActivity) getActivity()).getPhoneNumber();
-			// if we did not receive the number, we will hard-coded a number for demo purpose
-			if(phoneNumber == null){
-				phoneNumber = "3100000000";
-			}
 			
-			userName = etUserName.getText().toString();
+			// if we did not receive the number, we will hard-coded a number for demo purpose
+			
 			btnSubmit = (Button) rootView.findViewById(R.id.Submit);
 			btnSubmit.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View arg){
+					String userName = etUserName.getText().toString();
+					String passwd = etPassword.getText().toString();
+					String phoneNumber = ((LoginActivity) getActivity()).getPhoneNumber();
+					
+					if(phoneNumber == null){
+						phoneNumber = "3100000000";
+					}
 					
 					SharedPreferences myprefs= getActivity().getSharedPreferences( GLOBAL_PREF_NAME, MODE_PRIVATE);
 					myprefs.edit().putString(USERNAME, userName).commit();
 					
-					Intent intent = new Intent(getActivity(), PaymentActivity.class);
-					startActivity(intent);
+					SocketConnTask conn = new SocketConnTask();
+					conn.loginConn(getActivity(), userName,passwd,phoneNumber);
 					
-					// TODO: Send the information to the server with the phone number
 				}
 			});
 			return rootView;

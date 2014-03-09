@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -29,8 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.RelativeLayout;
-
-import com.google.zxing.BarcodeFormat;
 
 public class PaymentActivity extends FragmentActivity implements
 		ActionBar.TabListener {
@@ -54,6 +54,9 @@ public class PaymentActivity extends FragmentActivity implements
 	
 	Fragment fragmentSignUp;
 	Fragment fragmentVoucher;
+	
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -131,6 +134,8 @@ public class PaymentActivity extends FragmentActivity implements
 					.setText(mSectionsPagerAdapter.getPageTitle(i))
 					.setTabListener(this));
 		}
+		
+		
 	}
 	
 	// getter for the voucher list
@@ -198,7 +203,9 @@ public class PaymentActivity extends FragmentActivity implements
 		ImageButton btnReq;
 		ImageView ivBarcode;
 		Bitmap bmBarcode;
+		View rootView;
 		
+		String phoneNumber;
 		
 		public BarcodeFragment() {
 		}
@@ -206,21 +213,31 @@ public class PaymentActivity extends FragmentActivity implements
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			View rootView = inflater.inflate(R.layout.fragment_barcode,
+				rootView = inflater.inflate(R.layout.fragment_barcode,
 					container, false);
-			btnReq = (ImageButton)rootView.findViewById(R.id.photo);
-			ivBarcode = (ImageView)rootView.findViewById(R.id.barcode);
-			
-			btnReq.setOnClickListener(new OnClickListener(){
+				btnReq = (ImageButton)rootView.findViewById(R.id.photo);
+				ivBarcode = (ImageView)rootView.findViewById(R.id.barcode);
+				
+				TelephonyManager tm = (TelephonyManager)getActivity().getSystemService(TELEPHONY_SERVICE);
+				phoneNumber = tm.getLine1Number();
+				
+				btnReq.setOnClickListener(new OnClickListener(){
+				
+				
 				
 				@Override
 				public void onClick(View arg){
-					try{
-						bmBarcode = BarcodeGenerator.encodeAsBitmap("12345", BarcodeFormat.CODE_128, 600, 150);
-					}catch(Exception e){
-						e.printStackTrace();
+					String username= null;
+					String phoneNumber = null;
+					SocketConnTask conn = new SocketConnTask();
+					SharedPreferences myprefs= getActivity().getSharedPreferences( LoginActivity.GLOBAL_PREF_NAME, MODE_PRIVATE);
+					//get userName
+					username = myprefs.getString(LoginActivity.USERNAME, null);
+					
+					if(phoneNumber == null){
+						phoneNumber = "3100000000";
 					}
-					ivBarcode.setImageBitmap(bmBarcode);
+					conn.requestConn(rootView, getActivity(), username, phoneNumber);
 				}
 			});
 			
