@@ -30,30 +30,30 @@ public class Server_Communicator {
 		
 		BufferedReader inFromClient = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 		// DataOutputStream outToClient = new DataOutputStream(socket.getOutputStream());
-		PrintWriter outToClient = new PrintWriter(socket.getOutputStream(), true);
-		
-		outToClient.println("Hello, you are client #" + clientNumber + ".");		
+		PrintWriter outToClient = new PrintWriter(socket.getOutputStream(), true);		
 		Menu m = new Menu();
 		
 		long startTime = 0;
 		long elapsedTime = 0;
-		while((choice= inFromClient.readLine()) != null){
-		    
-		    if(choice.charAt(0) == 4){
+		if((choice= inFromClient.readLine()) != null && choice!=""){		    
+		    if(choice.charAt(0) == '4'){
                         startTime = System.currentTimeMillis();
                     }
-                    else if(choice.charAt(0) == 5){
+                    else if(choice.charAt(0) == '5'){
                         elapsedTime = System.currentTimeMillis()-startTime;
                         if(elapsedTime>6000){
                             System.out.println(elapsedTime);
                             System.out.println("Barcode has been expired. Request a barcode again");
-                            break;
+                            //break;
                         }
                     }
 
 		    System.out.println(choice);
 		    response = m.order(choice, hashGen, socket);
-		    outToClient.println(response);
+            if (response<0)
+                outToClient.println("ERROR");
+            else
+                outToClient.println(response);
 		}
 		
             } catch (IOException e) {

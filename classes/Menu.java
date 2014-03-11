@@ -1,134 +1,179 @@
+
+//import /root/CreditCard;
+//import /root/DBManager;
+//import /root/DBOperation;
+//import /root/DBOperation1;
+//import /root/TestSignOn;
+
 import java.io.*;
 import java.net.*;
 
 
 public class Menu {
-    	private String DELIMITER = "`";
-
-    
-    public int order(String choice, Hash_Generator hashGen, Socket socket) throws IOException {
-	String[] args = choice.split(DELIMITER);
-	System.out.println(args[0]+args[1]+args[2]+args[3]+args[4]+args[5]);
-
-	Authenticator auth = new Authenticator();
-
-	//TO DO: auth.isValid should check the args[1](account name) and args[2](password).
-	//       auth.isValid returns:
-	//       0: account and password is correct and inside the DB.
-	//       1: account is in DB, but password is not correct.
-	//       2: account does not exist in DB.
-	int valid_num = auth.isValid(args[1], args[2], args[3]);
+	private String DELIMITER = "`";
+	public static final int SUCCESS = 1;
+	public static final int FAILURE = -1;
 	
-	    int caseNum = Integer.parseInt(args[0]);
-	
-	
-	    switch(caseNum){
-	    case 1:
-		// When valid_num is equal to 2, it means that account is not exists.
+	public int order(String choice, Hash_Generator hashGen, Socket socket) throws IOException {
+		String[] args = choice.split(DELIMITER);
 		
-		// args[0] = "5"                                                                                                                                                                              
-		    // args[1] = "accountName"                                                                                                                                                                    
-		    // args[2] = "password"         
+		Authenticator auth = new Authenticator();
 
-		    // args[3] = "phone number"
+		int caseNum = Integer.parseInt(args[0]);
+		int valid_num=0;
 
-		    // args[4] = "fileSize"
-		    
-		    // args[5] = "fileName"
-
-
-		    // TODO: Store the account and password to DB. 
-
-
-		// After validation, read the stream to get the file.
-		if(valid_num == 0) {
-		    
-		    byte[] mybytearray = new byte[10485760];
-		    InputStream is = socket.getInputStream();
-		    FileOutputStream fos = new FileOutputStream("/home/peter/CS130_Barcode-Pay/photos/" + args[1]+".jpg");
-		    BufferedOutputStream bos = new BufferedOutputStream(fos);
-		    int bytesRead = is.read(mybytearray, 0, mybytearray.length);
-		    bos.write(mybytearray, 0, bytesRead);
-		    bos.close();
-		    //		    socket.close();
-		    
-		}
+		if(caseNum != 4)
+			valid_num = auth.isValid(args[1],args[2],args[3]);
 		else
-		    return -valid_num;
+			valid_num = auth.isValid(args[1],args[2]); 
 		
-	    case 2:
-		if ( valid_num == 0 ) {
-		    CreditCard c = new CreditCard(args);
-		    
-		    // args[0] = "2"
-		    // args[1] = "accountName"
-		    // args[2] = "password"
-		    // args[3] = "creditCardType"
-		    // args[4] = "creditCardNumber"
-		    // args[5] = "expirationMonth"
-		    // args[6] = "expirationYear"
-		    // args[7] = "cardVerificationNumber(CSV)"
-		    // args[8] = "cardHolderName"
-		    
-		    //TODO: Store the credit card object to DB
-		    
-		    
-		return 0;
 
+		switch(caseNum){
+			/*
+			Sign up
+			args[1] = username'
+			args[2] = password
+			args[3] = phoneNumber
+			args[4] = pictureSize
+			*/
+
+                                      // Ping: here is the code for sign up,it will insert a new record to DB with above 4 parameters
+                                      int result = 0; //result: 0: failed, 1:successful
+                                      DBOperation DBO = new DBOperation();
+                                      result = DBO.openAccount(args[4],args[1],args[2],args[3]);
+                                      // Ping: end
+
+			// To be changed after Ping's done with authentication
+			case 1:	
+			if(valid_num == 0) {
+
+				// create a image file
+				String path = "/home/peter/CS130_Barcode-Pay/photos/" + args[1]+".jpg";
+				File f = new File (path);
+				f.createNewFile();
+
+		    	byte[] mybytearray = new byte[10485760];
+		    	InputStream is = socket.getInputStream();
+		    	FileOutputStream fos = new FileOutputStream("/home/peter/CS130_Barcode-Pay/photos/" + args[1]+".jpg");
+		    	BufferedOutputStream bos = new BufferedOutputStream(fos);
+
+		    	int numRead = 0;
+		    	int totalNumRead = 0;
+		    	int totalBytes = Integer.parseInt(args[4]);
+		    	while ( (totalNumRead < totalBytes) &&(numRead = is.read(mybytearray) ) > 0) {
+          			bos.write(mybytearray, 0, numRead);
+          			totalNumRead +=numRead;
+     			}
+		   	
+		   		bos.close();
+		   		return SUCCESS;
+			}
+			else
+		    	return FAILURE;
+
+			/*
+			Login
+			args[1] = username
+			args[2] = password
+			args[3] = phoneNumber
+			*/
+                                       //Ping: not sure what to do with sign in
+                                       //      are you going to use authenticator here?
+                                       //Ping: end
+
+			case 2:
+			if(valid_num == 0){
+				return SUCCESS;
+			}
+			else{
+				return FAILURE;
+			}
+
+			/*
+			Link Credit Card
+			args[1] = username
+			args[2] = password
+			args[3] = phoneNumber
+			args[4] = "creditCardType"
+		    args[5] = "creditCardNumber"
+		    args[6] = "expirationMonth"
+		    args[7] = "expirationYear"
+		    args[8] = "cardVerificationNumber(CSV)"
+		    args[9] = "cardHolderName"
+			*/
+
+                                       //Ping: code for link credit card
+                                        
+                                        int result = 0; // result: 0: no credit card is linked to this account
+                                                        //         1: credit card exist.
+                                        DBOperation1 DBO1 = new DBOperation1();
+                                        result = DBO1.searchCreditCard(args[1],args[2],args[3]);
+                                        if( result == 0){
+                                            String[] temp = {"","","",args[4],args[5],args[6],args[7],args[8],args[9]};
+                                            CreditCard cc = new CreditCard(temp);
+                                            flag = DBO1.linkCreditCard (args[1],cc); // flag: 0: failed, 1: successful
+                                        }
+                                        //Ping: end
+                                          
+
+			case 3:
+			//TODO:
+			return FAILURE;
+
+			/*
+			Request Barcode
+			args[1] = username
+			ar
+			args[3] = phoneNumber
+			*/
+			case 4:
+			if(valid_num == 0){
+				CreditCard cc4 = new CreditCard();
+		   		cc4.setCreditCardType("visa");
+		    	String path = "/home/peter/CS130_Barcode-Pay/photos/" + args[1]+".jpg";
+		    	FileInputStream fis = null;
+		    	OutputStream os = null;
+		    	ByteArrayOutputStream bos = new ByteArrayOutputStream();
+
+
+
+		    	try{
+		    		fis = new FileInputStream(path);
+		    		os = socket.getOutputStream();
+		    	}catch (Exception e){
+		    		if(fis!=null)
+		    			fis.close();
+		    		if (os!=null)
+		    			os.close();
+		    		return FAILURE;
+		    	}
+
+		    	PrintWriter out = new PrintWriter(os,true);
+		    	byte[] buf = new byte[1024];
+		    	
+		    	try{
+		    		for (int readNum; (readNum = fis.read(buf))!=-1;){
+		    			bos.write(buf,0,readNum);
+		    		}
+		    	}catch(Exception e){
+		    		System.out.println("Error in reading file");
+		    	}
+
+		    	byte[] bytes = bos.toByteArray();
+
+
+		    	//int totalNumBytes = bytes.length;
+
+		    	out.println(hashGen.getRandomNumber(cc4));
+		    	//out.println(((Integer)totalNumBytes).toString());
+		    	os.write(bytes);
+		    	os.flush();
+
+		    	return SUCCESS;
+			}
+			else
+				return FAILURE;
 		}
-		else
-		    return -valid_num;
-		
-	    case 3:
-		System.out.println("Update a Barcode function has not been implemented!");
-		return 0;
-
-	    case 4:
-		System.out.println("In case4");
-		if ( valid_num == 0 ) {
-
-  
-		    CreditCard cc4 = new CreditCard();
-		    cc4.setCreditCardType("visa");
-		    System.out.println(cc4.getCreditCardType());
-		    // args[0] = "4"
-		    // args[1] = "accountName"
-		    // args[2] = "password"
-		    System.out.println("In case4 if");
-		    // TO DO:
-		    // Using given account name and password, create a credit card object from DB.
-		    return hashGen.getRandomNumber(cc4);
-		    
-
-		    
-		} else {
-		    // for incorrect password / 
-		    return -valid_num;
-		} 		
-
-
-
-	    case 5:
-		System.out.println("Decode a Barcode function has not been implemented!");
-		return 0;
-	    
-	    
-	    default:
-		System.out.println("Invalid Number!");
-		return 0;
-	    }
-
-				    //this.order();
-	    //}
-
-	
-    }
+		return FAILURE;
+	}
 }
-    
-    
-
-
-	    
-
-	    
-      
