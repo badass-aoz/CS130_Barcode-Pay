@@ -17,8 +17,13 @@ public class Authenticator {
 		//return 0;
 
              int result = 2;
-             DBOperation db = new DBOperation();
-             result = db.searchAccount(account,password,phoneNumber);
+	     try {
+		 DBOperation db = new DBOperation();
+		 result = db.searchAccount(account,password,phoneNumber);
+	     } catch (Exception e) {
+		 System.out.println("error in search account!\n");
+	     }
+	     
              return result; // result: 0: correct username,password,phone number
                             //         1: wrong password,or wrong phone number
                             //         2: Account do not exist		

@@ -21,7 +21,7 @@ public class Server_Communicator {
     public void run() {
 	    //	    Registrar r = new Registrar();
 	    
-	    String choice;
+	String choice = new String();
 	    int response;
 
             try {
@@ -35,6 +35,7 @@ public class Server_Communicator {
 		
 		long startTime = 0;
 		long elapsedTime = 0;
+		System.out.println(choice);
 		if((choice= inFromClient.readLine()) != null && choice!=""){		    
 		    if(choice.charAt(0) == '4'){
                         startTime = System.currentTimeMillis();
